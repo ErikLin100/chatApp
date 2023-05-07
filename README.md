@@ -1,6 +1,6 @@
 # EZchat
 
-Helppokäyttöinen ja simppeli chatti-sovellus, kirjautuminen sähköpostilla.
+Helppokäyttöinen ja simppeli React Native chatti-sovellus, kirjautuminen sähköpostilla.
 
 ### Käytetyt teknologiat
 
