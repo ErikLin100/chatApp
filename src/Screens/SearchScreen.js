@@ -15,16 +15,22 @@ const SearchScreen = () => {
   const [found, setFound] = useState(false)
   const [searchFriendsName, setSearchFriendsName] = useState([])
 
+  // Käsittelee käyttäjän hakutoiminnon
+
   const HandleSearch = async () => {
     if(searchFriend !== ''){
       setSearchFriendsName([])
       setIsLoading(true)
+
+      // Hae käyttäjät, joiden käyttäjätunnus vastaa hakukriteerejä
 
       const queryResult = query(
         userRef,
         where('username', '>=', searchFriend.trim()),
         where('username', '<=', searchFriend.trim()+'\uf8ff')
         )
+
+        // Tarkista, onko tuloksia löytynyt
       
       const querySnapshot = await getDocs(queryResult)
       if(!querySnapshot.empty){

@@ -1,6 +1,9 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
+// MessageItem-komponentti näyttää yksittäisen viestin
+// Propsina otetaan vastaan "item" ja "sender"
+
 const MessageItem = ({item, sender}) => {
   return (
     <View 

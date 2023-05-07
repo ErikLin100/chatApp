@@ -13,6 +13,9 @@ const RegisterScreen = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+
+    // Käsittelee rekisteröinnin ja tarkistaa syötteet
+    
     const onHandleRegister = () => {
         if(email !== "" && password !== "" && confirmPassword !== ""){
             if(password !== confirmPassword){

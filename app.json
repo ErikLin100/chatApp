@@ -3,6 +3,7 @@
     "name": "EZchat",
     "slug": "ezchat",
     "version": "1.0.0",
+    "scheme": "com.erikaleksandrl.EZchat",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -18,6 +19,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.erikaleksandrl.EZchat",
       "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",

@@ -2,8 +2,14 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 const userAvatar = require("../../assets/man.png");
 
+
+// ChatItem-komponentti näyttää yksittäisen keskustelun
+// Propsina otetaan vastaan "navigation" ja "friend"
+
+
 const ChatItem = ({ navigation, friend }) => {
   return (
+     // Navigoi "Chat"-näytölle ja välitä "friendName", "friendAvatar" ja "friendEmail" parametreina
     <TouchableOpacity
       onPress={() =>
         navigation.navigate("Chat", {

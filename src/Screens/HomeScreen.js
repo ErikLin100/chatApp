@@ -22,11 +22,16 @@ const HomeScreen = () => {
   const { user, userAvatarUrl, setUserAvatarUrl } = useContext(
     AuthenticatedUserContext
   );
+
+  // Alustetaan tilamuuttujat
+
   const username = user.email.split("@")[0];
   const [friends, setFriends] = useState([]);
   const [friendAvatar, setFriendAvatar] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [lastMessage, setLastMessage] = useState([]);
+
+  // Asetetaan otsikko ja näytetään käyttäjän profiilikuva
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -45,6 +50,8 @@ const HomeScreen = () => {
     });
   }, [userAvatarUrl]);
 
+  // Haetaan käyttäjän profiilikuva
+
   useEffect(() => {
     if (!user) return;
     const queryResult = query(userRef, where("email", "==", user.email));
@@ -58,6 +65,8 @@ const HomeScreen = () => {
     }
     DocFinder(queryResult);
   }, []);
+
+  // Haetaan käyttäjän keskustelut
 
   useEffect(() => {
     if (!user) return;
@@ -75,6 +84,8 @@ const HomeScreen = () => {
       );
 
       let friendsArray = [];
+
+      // Tallennetaan keskustelukumppanit friends-tilaan
 
       const unsubscribe = onSnapshot(queryResult, (querySnapshot) => {
         setIsLoading(false);
@@ -103,6 +114,8 @@ const HomeScreen = () => {
         });
       });
 
+      // Poistetaan kuuntelijat kun komponentti poistetaan
+      
       return () => {
         unsubscribe();
         unsubscribe2();

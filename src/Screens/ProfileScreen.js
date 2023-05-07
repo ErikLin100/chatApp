@@ -19,7 +19,7 @@ const [userEmail, setUserEmail] = useState('')
 const [userImageUrl, setUserImageUrl] = useState(null)
 const [isLoading, setIsLoading] = useState(false)
 
-
+// Hae käyttäjän tietokantatiedot
 const queryResult = query(userRef, where('email', '==', user.email));
 
 async function DocFinder(queryResult){
@@ -34,6 +34,8 @@ async function DocFinder(queryResult){
        } 
     })
 }
+
+// Avaa kuvagalleria kuvan valitsemista varten
 
 const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -83,6 +85,8 @@ useEffect(() => {
 
    DocFinder(queryResult);
 }, [userImageUrl]);
+
+// Kirjaudu ulos
 
 const handleSignOut = () => {
     signOut(Auth).then(() => {

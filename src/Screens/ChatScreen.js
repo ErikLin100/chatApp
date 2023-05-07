@@ -24,10 +24,12 @@ const [messages, setMessages] = useState([])
 const flatListRef = useRef(null)
 const [isListReady, setIsListReady] = useState(false)
 
+// Luo tietokantakyselyt chattitietojen hakemiseen
+
 const queryResult = query(chatRef, where('chatters', '==', `${sender}xx${friendName}` ))
 const queryResult2 = query(chatRef, where('chatters', '==', `${friendName}xx${sender}` ))
 
-
+// Asettaa navigointipalkin vasemman yläkulman ulkoasun
 
 useLayoutEffect(() => {
 
@@ -49,6 +51,8 @@ useLayoutEffect(() => {
   
   
 }, [])
+
+ // Hae viestit tietokannasta ja aseta ne tilaan
 
 useEffect(() => {
     const fetchMessages = async () => {
@@ -81,6 +85,8 @@ useEffect(() => {
         unsub2()
     }
 }, [])
+
+// Lähetää viestin tietokantaan 
 
 const handleSubmit = async () => {
 
