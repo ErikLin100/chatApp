@@ -1,4 +1,4 @@
-import { View, Text, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, Alert, StatusBar } from 'react-native';
 import React, { useState } from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useNavigation } from "@react-navigation/native";
@@ -21,7 +21,7 @@ const LoginScreen = () => {
             signInWithEmailAndPassword(Auth, email, password).then(() => 
                 registerIndieID(`${email}`, 7813, 'NU3z01ObyIlH8qZ4Esd3m5')
 
-            ).catch((error) => {
+            ).catch((error) =>{
                 Alert.alert("Error", error.message)
             });
         }
@@ -69,6 +69,7 @@ const LoginScreen = () => {
             </TouchableOpacity>
         </View>
     </View>
+    <StatusBar barStyle={"light-content"}/>
     </KeyboardAwareScrollView>
   );
 };

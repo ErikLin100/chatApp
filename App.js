@@ -14,7 +14,7 @@ import SearchScreen from './src/Screens/SearchScreen';
 import ChatScreen from './src/Screens/ChatScreen';
 const loadingGif = require('./assets/Loading.gif');
 
-// Luo uuden native stack navigaattorin
+// Luo uuden native stack navigaattorinn
 const Stack = createNativeStackNavigator();
 
 // Juurinavigaattori, joka hallinnoi sovelluksen pääkäyttöliittymää

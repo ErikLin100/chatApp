@@ -4,6 +4,8 @@ import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { collection, initializeFirestore } from "firebase/firestore";
 import {API_KEY, AUTH_DOMAIN, PROJECT_ID, STORAGE_BUCKET,MESSAGING_SENDER_ID,MEASUREMENT_ID, APP_ID } from '@env'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { initializeAuth, getReactNativePersistence } from "firebase/auth/react-native";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,7 +24,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-export const Auth = getAuth();
+export const Auth = initializeAuth(app, {
+  persistence: getReactNativePersistence(AsyncStorage)
+});
 export const db = initializeFirestore(app, { experimentalForceLongPolling: true });
 
 export const userRef = collection(db, 'Users'); 

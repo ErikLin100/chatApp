@@ -89,48 +89,50 @@ useEffect(() => {
 // Lähetää viestin tietokantaan 
 
 const handleSubmit = async () => {
-
-    const querySnapshot = await getDocs(queryResult)
-    const querySnapshot2 = await getDocs(queryResult2)
-
-    if(!querySnapshot.empty || !querySnapshot2.empty){
-        querySnapshot.forEach((document)=>{
-            updateDoc(doc(db, 'Chats', document.id),{
-                conversation:[
-                    ...document.data().conversation,
-                    {
-                        message:message,
-                        timestamp:Timestamp.now(),
-                        sender:sender
-                    }
-                ]
-            }).catch((error)=>console.log(error))
-        })
-
-        querySnapshot2.forEach((document)=>{
-            updateDoc(doc(db, 'Chats', document.id),{
-                conversation:[
-                    ...document.data().conversation,
-                    {
-                        message:message,
-                        timestamp:Timestamp.now(),
-                        sender:sender
-                    },
-                ],
-            }).catch((error)=>console.log(error))
-        })
-    }else{
-
-        await addDoc(collection(db, 'Chats'),{
-            chatters: `${sender}xx${friendName}`,
-            conversation:[
-                {
-                    message:message,
-                    timestamp: Timestamp.now(),
-                    sender:sender,
-                },
-            ],
-        })
+    const querySnapshot = await getDocs(queryResult);
+    const querySnapshot2 = await getDocs(queryResult2);
+  
+    if (!querySnapshot.empty || !querySnapshot2.empty) {
+      querySnapshot.forEach((document) => {
+        updateDoc(doc(db, "Chats", document.id), {
+          conversation: [
+            ...(Array.isArray(document.data().conversation)
+              ? document.data().conversation
+              : []),
+            {
+              message: message,
+              timestamp: Timestamp.now(),
+              sender: sender,
+            },
+          ],
+        }).catch((error) => console.log(error));
+      });
+  
+      querySnapshot2.forEach((document) => {
+        updateDoc(doc(db, "Chats", document.id), {
+          conversation: [
+            ...(Array.isArray(document.data().conversation)
+              ? document.data().conversation
+              : []),
+            {
+              message: message,
+              timestamp: Timestamp.now(),
+              sender: sender,
+            },
+          ],
+        }).catch((error) => console.log(error));
+      });
+    } else {
+      await addDoc(collection(db, "Chats"), {
+        chatters: `${sender}xx${friendName}`,
+        conversation: [
+          {
+            message: message,
+            timestamp: Timestamp.now(),
+            sender: sender,
+          },
+        ],
+      });
     }
 
     async function RetryRequest(maxRetries = 3){
@@ -168,7 +170,8 @@ useEffect(() => {
   return (
     
       <View className='flex-1'>
-        {messages[0] !== undefined && (
+        {messages !== undefined && (
+
         <View className='flex-1'>
             
             <KeyboardAwareFlatList
@@ -184,6 +187,7 @@ useEffect(() => {
                     <MessageItem item={item} sender={sender}/>
                 )}
             />
+                
               <View className='h-[10%] flex-row items-center mx-3 space-x-3 h-14 mb-3'>
         <TextInput
             className='bg-white rounded-xl p-2 flex-1 text-gray-700 h-12' 
