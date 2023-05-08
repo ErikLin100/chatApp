@@ -4,9 +4,13 @@ Helppokäyttöinen ja simppeli React Native chatti-sovellus, kirjautuminen sähk
 
 ### Käytetyt teknologiat
 
-- Firebase
+- Firebase Auth
+- Firebase Storage
+- Firebase Firestore
 - React Native
 - Javascript
 - Expo
 - TailwindCSS
 - Expo notifications
+- ExpoImagePicker
+
